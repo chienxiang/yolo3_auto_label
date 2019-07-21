@@ -10,11 +10,25 @@ print ("there are " + str(len(contours)) + " contours")
  
 cnt = contours[0]
 print ("there are " + str(len(cnt)) + " points in contours[0]")
-approx = cv2.approxPolyDP(cnt,30,True)
+approx = cv2.approxPolyDP(cnt,10,True) #原輸出精度30圖為正五邊形
+#approxPolyDP(InputArray curve, OutputArray approxCurve, double epsilon, bool closed)
+#InputArray curve:一般是由图像的轮廓点组成的点集
+#OutputArray approxCurve：表示输出的多边形点集
+#epsilon：主要表示输出的精度，就是另个轮廓点之间最大距离数，5,6,7，，8，，,,，
+#closed：表示输出的多边形是否封闭
+
 print ("after approx, there are " + str(len(approx)) + " points")
 print (approx)
 cv2.drawContours(im,[approx],0,(255,0,0),-1)
- 
+#drawContours( image,  contours , int contourIdx,  color, int thickness, int lineType, hierarchy, int maxLevel)
+#mage：輸入輸出圖，會將輪廓畫在此影像上。
+#contours：包含所有輪廓的容器(vector)，也就是findContours()所找到的contours。
+#contourIdx：指定畫某個輪廓。
+#color：繪製的顏色。
+#lineType：繪製的線條型態。
+#hierarchy：輪廓階層，也就是findContours()所找到的hierarchy。
+#maxLevel：最大階層的輪廓，可以指定想要畫的輪廓，有輸入hierarchy時才會考慮，輸入的值代表繪製的層數。
+
  
 cnt = contours[1]
 print ("there are " + str(len(cnt)) + " points in contours[1]")
