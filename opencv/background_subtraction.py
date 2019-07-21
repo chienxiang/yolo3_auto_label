@@ -6,7 +6,7 @@ ph2 = "/home/tony/Documents/data/img_3/5.jpg"
 
 threshod= 20 
 
-img = cv2.imread(ph2,3) #RGB
+img = cv2.imread(ph2,3) #BGR
 s1 = cv2.imread(ph1,0)  #灰階
 s2 = cv2.imread(ph2,0)
 
@@ -25,7 +25,7 @@ def pic_sub(dest,s1,s2,img):
             else:
                 dest[x,y] = s1[x,y] - s2[x,y]
 
-            if(dest[x,y] < threshod):
+            if(dest[x,y] < threshod):   #相差小於20時視為背景
                 img[x,y] = 255
                 dest[x,y] = 0
             else:
