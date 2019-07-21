@@ -8,6 +8,10 @@ cap = cv2.VideoCapture(1)
 while(True):
   # 從攝影機擷取一張影像
   ret, frame = cap.read()
+  #cap.read()回傳tuple(a,b)
+  #ret回傳true,flase代表有無讀到圖片(retval閾值)
+  #frame當前擷取一帧的圖片
+
 
   # 將圖片轉為灰階
   #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
