@@ -30,11 +30,11 @@ print ("there are "+ str(len(contours)) + " contours")
 
 cnt = contours[0]
 print ("there are " + str(len(cnt)) + " points in contours[0]")
-print (cnt)
+#print (cnt)
  
 cnt = contours[1]
 print ("there are " + str(len(cnt)) + " points in contours[1]")
-print (cnt)
+#print (cnt)
  
 cv2.imshow('im', im)
 cv2.waitKey(0)
