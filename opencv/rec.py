@@ -4,7 +4,7 @@ import numpy as np
 
 class ShapeAnalysis:
     def __init__(self):
-        self.shapes = {‘triangle‘: 0, ‘rectangle‘: 0, ‘polygons‘: 0, ‘circles‘: 0}
+        self.shapes = {'triangle': 0, 'rectangle': 0, 'polygons': 0, 'circles': 0}
 
     def analysis(self, frame):
         h, w, ch = frame.shape
@@ -28,30 +28,30 @@ class ShapeAnalysis:
             corners = len(approx)
             shape_type = ""
             if corners == 3:
-                count = self.shapes[‘triangle‘]
+                count = self.shapes['triangle']
                 count = count+1
-                self.shapes[‘triangle‘] = count
+                self.shapes['triangle'] = count
                 shape_type = "三角形"
             if corners == 4:
-                count = self.shapes[‘rectangle‘]
+                count = self.shapes['rectangle']
                 count = count + 1
-                self.shapes[‘rectangle‘] = count
+                self.shapes['rectangle'] = count
                 shape_type = "矩形"
             if corners >= 10:
-                count = self.shapes[‘circles‘]
+                count = self.shapes['circles']
                 count = count + 1
-                self.shapes[‘circles‘] = count
+                self.shapes['circles'] = count
                 shape_type = "圓形"
             if 4 < corners < 10:
-                count = self.shapes[‘polygons‘]
+                count = self.shapes['polygons']
                 count = count + 1
-                self.shapes[‘polygons‘] = count
+                self.shapes['polygons'] = count
                 shape_type = "多邊形"
 
             # 求解中心位置
             mm = cv.moments(contours[cnt])
-            cx = int(mm[‘m10‘] / mm[‘m00‘])
-            cy = int(mm[‘m01‘] / mm[‘m00‘])
+            cx = int(mm['m10'] / mm['m00'])
+            cy = int(mm['m01'] / mm['m00'])
             cv.circle(result, (cx, cy), 3, (0, 0, 255), -1)
 
             # 顏色分析
@@ -68,10 +68,10 @@ class ShapeAnalysis:
         return self.shapes
 
     def draw_text_info(self, image):
-        c1 = self.shapes[‘triangle‘]
-        c2 = self.shapes[‘rectangle‘]
-        c3 = self.shapes[‘polygons‘]
-        c4 = self.shapes[‘circles‘]
+        c1 = self.shapes['triangle']
+        c2 = self.shapes['rectangle']
+        c3 = self.shapes['polygons']
+        c4 = self.shapes['circles']
         cv.putText(image, "triangle: "+str(c1), (10, 20), cv.FONT_HERSHEY_PLAIN, 1.2, (255, 0, 0), 1)
         cv.putText(image, "rectangle: " + str(c2), (10, 40), cv.FONT_HERSHEY_PLAIN, 1.2, (255, 0, 0), 1)
         cv.putText(image, "polygons: " + str(c3), (10, 60), cv.FONT_HERSHEY_PLAIN, 1.2, (255, 0, 0), 1)
@@ -79,7 +79,7 @@ class ShapeAnalysis:
         return image
 
 if __name__ == "__main__":
-    src = cv.imread("rec.png")
+    src = cv.imread('rec.png')
     ld = ShapeAnalysis()
     ld.analysis(src)
     cv.waitKey(0)
